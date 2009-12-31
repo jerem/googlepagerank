@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+#
+# Copyright (c) 2007 Thomas Lotze
+# See also LICENSE.txt
+
+"""Fetches page ranks for the given URLs from Google and prints them out.
+
+Google page ranks range from 1 (unimportant) to 10 (important).
+An empty page rank means Google has not yet assigned a rank to the URL.
+"IO" instead of a page rank means there was an error contacting Google.
+"RE" means Google's response could not be understood.
+"""
+
+import sys
+import urllib
+import tl.googlepagerank.interface as gpri
+
+
+for target in sys.argv[1:]:
+    try:
+        rank = gpri.read_rank(urllib.urlopen(gpri.query_url(target)).read())
+    except IOError:
+        rank = "IO"
+    except ValueError:
+        rank = "RE"
+    else:
+        if not int(rank):
+            rank = ""
+
+    print "%2s %s" % (rank, target)

@@ -1,0 +1,17 @@
+================================
+Change log for tl.googlepagerank
+================================
+
+0.2 (unreleased)
+================
+
+
+0.1 (2007-01-24)
+================
+
+initial release
+
+
+.. Local Variables:
+.. mode: rst
+.. End:
